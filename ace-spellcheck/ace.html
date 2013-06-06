@@ -89,9 +89,11 @@ function replaceWord(original, line, start, end, replacement) {
 							retValue = true;
 							
 							var matches = /misspelled-(\d+)-(\d+)-(\d+)/.exec($(this).attr('class'));
-							wordData['line'] = matches[1];
-							wordData['start'] = matches[2];
-							wordData['end'] = matches[3];
+							if (matches.length >= 4) {
+								wordData['line'] = matches[1];
+								wordData['start'] = matches[2];
+								wordData['end'] = matches[3];
+							}
 							
 						}
 					};
