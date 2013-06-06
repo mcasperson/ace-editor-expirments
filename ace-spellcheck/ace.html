@@ -59,7 +59,7 @@ function replaceWord(original, line, start, end, replacement) {
 					var option = {};
 					var suggestion = suggestions[i];
 					option[suggestion]=function(menuItem,menu){
-						editor.getSession().setValue(replaceWord(editor.getSession().getValue(),wordDetails.line, wordDetails.start, wordDetails.end, menuItem));
+						editor.getSession().setValue(replaceWord(editor.getSession().getValue(),wordDetails.line, wordDetails.start, wordDetails.end, menuItem.innerText));
 					};
 					retValue.push(option);
 				}
