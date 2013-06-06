@@ -51,24 +51,24 @@ function replaceWord(original, line, start, end, replacement) {
             
 		jQuery("#editor").contextMenu(function() {
 				var retValue = [];
-				var wordDetails = this.word;
-				var word = editor.getSession().getValue().split("\n")[wordDetails.line].substring(wordDetails.start, wordDetails.end);
+				var word = editor.getSession().getValue().split("\n")[this.wordData.line].substring(this.wordData.start, this.wordData.end);
 				var suggestions = dictionary.suggest(word);
-				
+
 				for (var i = 0, _len = suggestions.length; i < _len; i++) {
 					var option = {};
 					var suggestion = suggestions[i];
-					option[suggestion]=function(suggestion){
+					option[suggestion]=function(suggestion, wordData){
 						return function(menuItem,menu){
 							editor.getSession().setValue(
 								replaceWord(
 									editor.getSession().getValue(),
-									wordDetails.line, 
-									wordDetails.start, 
-									wordDetails.end, 
+									wordData.line,
+									wordData.start,
+									wordData.end,
 									suggestion))
 						};
-					}(suggestion);
+					}(suggestion, this.wordData);
+
 					retValue.push(option);
 				}
 
@@ -77,24 +77,25 @@ function replaceWord(original, line, start, end, replacement) {
 			    
 			    var retValue = false;
 			    
-			    this.word = {};
-			    var word = this.word;
-			    
-			    
-			    jQuery("div[class^='misspelled']").each(function(){
-					if ($(this).offset().left <= event.clientX &&
-						$(this).offset().left + $(this).width() >= event.clientX &&
-						$(this).offset().top <= event.clientY &&
-						$(this).offset().top + $(this).height() >= event.clientY) {
-						retValue = true;
-						
-						var matches = /misspelled-(\d+)-(\d+)-(\d+)/.exec($(this).attr('class'));
-						word['line'] = matches[1];
-						word['start'] = matches[2];
-						word['end'] = matches[3];
-						
-					}
-				});
+			    this.wordData = {};
+
+			    jQuery("div[class^='misspelled']").each(
+			    	function(wordData){
+					return function(){
+						if ($(this).offset().left <= event.clientX &&
+							$(this).offset().left + $(this).width() >= event.clientX &&
+							$(this).offset().top <= event.clientY &&
+							$(this).offset().top + $(this).height() >= event.clientY) {
+							retValue = true;
+							
+							var matches = /misspelled-(\d+)-(\d+)-(\d+)/.exec($(this).attr('class'));
+							wordData['line'] = matches[1];
+							wordData['start'] = matches[2];
+							wordData['end'] = matches[3];
+							
+						}
+					};
+				}(this.wordData));
 			
 				return retValue;
 			}});
