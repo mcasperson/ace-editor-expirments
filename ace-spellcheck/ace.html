@@ -58,8 +58,8 @@ function replaceWord(original, line, start, end, replacement) {
 				for (var i = 0, _len = suggestions.length; i < _len; i++) {
 					var option = {};
 					var suggestion = suggestions[i];
-					option[suggestion]=function(){
-						editor.getSession().setValue(replaceWord(editor.getSession().getValue(),wordDetails.line, wordDetails.start, wordDetails.end, suggestion));
+					option[suggestion]=function(menuItem,menu){
+						editor.getSession().setValue(replaceWord(editor.getSession().getValue(),wordDetails.line, wordDetails.start, wordDetails.end, menuItem));
 					};
 					retValue.push(option);
 				}
