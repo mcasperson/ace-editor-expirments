@@ -26,13 +26,13 @@
 function replaceWord(original, line, start, end, replacement) {
 	var lines = original.split("\n");
 	var output = "";
-	for (var i = 0; i < lines.length; ++i) {
+	for (var i = 0, _len = lines.length; i < _len; ++i) {
 		if (i != line) {
-			output += lines[i] + (i == lines.length - 1 ? "" : "\n");
+			output += lines[i] + (i == _len - 1 ? "" : "\n");
 		} else {
 			output += lines[i].substring(0, start);
 			output += replacement;
-			output += lines[i].substring(end, lines[i].length); + (i == lines.length - 1 ? "" : "\n");
+			output += lines[i].substring(end, lines[i].length) + (i == _len - 1 ? "" : "\n");
 		}
 	}
 
@@ -58,9 +58,17 @@ function replaceWord(original, line, start, end, replacement) {
 				for (var i = 0, _len = suggestions.length; i < _len; i++) {
 					var option = {};
 					var suggestion = suggestions[i];
-					option[suggestion]=function(menuItem,menu){
-						editor.getSession().setValue(replaceWord(editor.getSession().getValue(),wordDetails.line, wordDetails.start, wordDetails.end, menuItem.innerText));
-					};
+					option[suggestion]=function(suggestion){
+						return function(menuItem,menu){
+							editor.getSession().setValue(
+								replaceWord(
+									editor.getSession().getValue(),
+									wordDetails.line, 
+									wordDetails.start, 
+									wordDetails.end, 
+									suggestion))
+						};
+					}(suggestion);
 					retValue.push(option);
 				}
 
