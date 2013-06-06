@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>ACE in Action</title>
+<style type="text/css" media="screen">
+    #editor { 
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+</style>
+<script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
+<script type="text/javascript" src="jquery.contextmenu.js"></script>
+<link rel="stylesheet" type="text/css" href="jquery.contextmenu.css" media="all">
+<script src="typo.js"></script>
+</head>
+<body>
+
+<div id="editor">misspealled</div>
+    
+<script src="http://rawgithub.com/ajaxorg/ace-builds/master/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+
+function replaceWord(original, line, start, end, replacement) {
+	var lines = original.split("\n");
+	var output = "";
+	for (var i = 0; i < lines.length; ++i) {
+		if (i != line) {
+			output += lines[i] + (i == lines.length - 1 ? "" : "\n");
+		} else {
+			output += lines[i].substring(0, start);
+			output += replacement;
+			output += lines[i].substring(end, lines[i].length); + (i == lines.length - 1 ? "" : "\n");
+		}
+	}
+
+	return output;	
+}
+
+    function enableSpellCheckingEnabledNative() {
+
+        try {
+            console.log("ENTER AceEditor.enableSpellCheckingEnabledNative()");
+
+            if (editor == null) {
+                console.log("editor == null. setSpellCheckingEnabledNative() was not called successfully.");
+            }
+                       
+            
+		jQuery("#editor").contextMenu(function() {
+				var retValue = [];
+				var wordDetails = this.word;
+				var word = editor.getSession().getValue().split("\n")[wordDetails.line].substring(wordDetails.start, wordDetails.end);
+				var suggestions = dictionary.suggest(word);
+				
+				for (var i = 0, _len = suggestions.length; i < _len; i++) {
+					var option = {};
+					var suggestion = suggestions[i];
+					option[suggestion]=function(){
+						editor.getSession().setValue(replaceWord(editor.getSession().getValue(),wordDetails.line, wordDetails.start, wordDetails.end, suggestion));
+					};
+					retValue.push(option);
+				}
+
+				return retValue;
+			}, {theme:'human', beforeShow: function() {  
+			    
+			    var retValue = false;
+			    
+			    this.word = {};
+			    var word = this.word;
+			    
+			    
+			    jQuery("div[class^='misspelled']").each(function(){
+					if ($(this).offset().left <= event.clientX &&
+						$(this).offset().left + $(this).width() >= event.clientX &&
+						$(this).offset().top <= event.clientY &&
+						$(this).offset().top + $(this).height() >= event.clientY) {
+						retValue = true;
+						
+						var matches = /misspelled-(\d+)-(\d+)-(\d+)/.exec($(this).attr('class'));
+						word['line'] = matches[1];
+						word['start'] = matches[2];
+						word['end'] = matches[3];
+						
+					}
+				});
+			
+				return retValue;
+			}});
+
+            // See https://github.com/swenson/ace_spell_check_js/blob/master/spellcheck_ace.js
+
+            var lang = "en_US";
+            var dicPath = "dictionaries/en_US/en_US.dic";
+            var affPath = "dictionaries/en_US/en_US.aff";
+
+            jQuery("<style type='text/css'>.ace_marker-layer div[class^='misspelled'] { position: absolute; z-index: -2; border-bottom: 1px solid red; margin-bottom: -1px; }</style>").appendTo("head");
+            jQuery("<style type='text/css'>div[class^='misspelled'] { border-bottom: 1px solid red; margin-bottom: -1px; }</style>").appendTo("head");
+
+            var enable_spellcheck = function() {
+                editor.getSession().on('change', function(e) {
+                    contents_modified = true;
+                });
+                setInterval(spell_check, 500);
+            }
+
+            var dictionary = null;
+            jQuery.get(dicPath, function(data) {
+                dicData = data;
+            }).done(function() {
+                    jQuery.get(affPath, function(data) {
+                        affData = data;
+                    }).done(function() {
+                            console.log("Dictionary loaded");
+                            dictionary = new Typo(lang, affData, dicData);
+                            enable_spellcheck();
+                            spell_check();
+                        });
+                });
+
+            // Check the spelling of a line, and return [start, end]-pairs for misspelled words.
+            misspelled = function(line) {
+
+                // remove all xml/html elements
+                var tagRe = /<.*?>/;
+                var tagMatch = null;
+                while ((tagMatch = line.match(tagRe)) != null) {
+                    var tagLength = tagMatch[0].length;
+                    var replacementString = "";
+                    for (var i = 0; i < tagLength; ++i) {
+                        replacementString += " ";
+                    }
+                    line = line.replace(tagRe, replacementString);
+                }
+
+                // remove all xml/html entities
+                var entityRe = /&.*?;/;
+                var entityMatch = null;
+                while ((entityMatch = line.match(entityRe)) != null) {
+                    var entityLength = entityMatch[0].length;
+                    var replacementString = "";
+                    for (var i = 0; i < entityLength; ++i) {
+                        replacementString += " ";
+                    }
+                    line = line.replace(entityRe, replacementString);
+                }
+
+                var words = line.split(' ');
+                var i = 0;
+                var bads = [];
+                for (word in words) {
+                    var x = words[word] + "";
+                    var checkWord = x.replace(/[^a-zA-Z']/g, '');
+
+                    // skip initial whitespace
+                    var match = x.match(/^\s+/);
+                    var startingWhitespace = match != null ? match[0].length : 0;
+
+                    if (!dictionary.check(checkWord)) {
+                        var start = i + startingWhitespace;
+                        var end = i + x.length;
+
+                        if (start < end) {
+                            bads[bads.length] = [start, end];
+                        }
+                    }
+                    i += x.length + 1;
+                }
+                return bads;
+            }
+
+            var contents_modified = true;
+            var currently_spellchecking = false;
+            var markers_present = [];
+
+            spell_check = function() {
+                // Wait for the dictionary to be loaded.
+                if (dictionary == null) {
+                    return;
+                }
+
+                if (currently_spellchecking) {
+                    return;
+                }
+
+                if (!contents_modified) {
+                    return;
+                }
+                currently_spellchecking = true;
+                var session = editor.getSession();
+
+                // Clear the markers.
+                for (var i in markers_present) {
+                    session.removeMarker(markers_present[i]);
+                }
+                markers_present = [];
+
+                try {
+                    var Range = ace.require('ace/range').Range
+                    var lines = session.getDocument().getAllLines();
+                    for (var i in lines) {
+                        // Clear the gutter.
+                        session.removeGutterDecoration(i, "misspelled");
+                        // Check spelling of this line.
+                        var misspellings = misspelled(lines[i]);
+
+                        // Add markers and gutter markings.
+                        //if (misspellings.length > 0) {
+                            //session.addGutterDecoration(i, "misspelled");
+                        //}
+                        for (var j in misspellings) {
+                            var range = new Range(i, misspellings[j][0], i, misspellings[j][1]);
+                            markers_present[markers_present.length] = session.addMarker(range, "misspelled-" + i + "-" + misspellings[j][0] + "-" + misspellings[j][1], "typo", true);
+                        }
+                    }
+                } finally {
+                    currently_spellchecking = false;
+                    contents_modified = false;
+                }
+            }
+
+
+
+        } finally {
+            console.log("EXIT AceEditor.enableSpellCheckingEnabledNative()");
+        }
+
+    };
+</script>
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.getSession().setMode("ace/mode/javascript");
+    editor.getSession().setUseWrapMode(true);
+    enableSpellCheckingEnabledNative();
+    
+</script>
+</body>
+</html>
