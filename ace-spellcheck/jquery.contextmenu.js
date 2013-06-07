@@ -206,21 +206,26 @@
 				// If the menu content is a function, call it to populate the menu each time it is displayed
 				if (cmenu.menuFunction) {
 					if (cmenu.menu) { $(cmenu.menu).remove(); }
-					cmenu.menu = cmenu.createMenu(cmenu.menuFunction(cmenu,t),cmenu);
-					cmenu.menu.css({display:'none'});
-					$(cmenu.appendTo).append(cmenu.menu);
+					cmenu.menuFunction(cmenu,t,function(data){
+						cmenu.menu = cmenu.createMenu(data,cmenu);
+						cmenu.menu.css({display:'none'});
+						$(cmenu.appendTo).append(cmenu.menu);
+						
+						var $c = cmenu.menu;
+						x+=cmenu.offsetX; y+=cmenu.offsetY;
+						var pos = cmenu.getPosition(x,y,cmenu,e); // Extracted to method for extensibility
+						cmenu.showShadow(pos.x,pos.y,e);
+						// Resize the iframe if needed
+						if (cmenu.useIframe) {
+							$c.find('iframe').css({width:$c.width()+cmenu.shadowOffsetX+cmenu.shadowWidthAdjust,height:$c.height()+cmenu.shadowOffsetY+cmenu.shadowHeightAdjust});
+						}
+						$c.css( {top:pos.y+"px", left:pos.x+"px", position:"absolute",zIndex:9999} )[cmenu.showTransition](cmenu.showSpeed,((cmenu.showCallback)?function(){cmenu.showCallback.call(cmenu);}:null));
+						cmenu.shown=true;
+						$(document).one('click',null,function(){cmenu.hide()}); // Handle a single click to the document to hide the menu
+					});
+					
 				}
-				var $c = cmenu.menu;
-				x+=cmenu.offsetX; y+=cmenu.offsetY;
-				var pos = cmenu.getPosition(x,y,cmenu,e); // Extracted to method for extensibility
-				cmenu.showShadow(pos.x,pos.y,e);
-				// Resize the iframe if needed
-				if (cmenu.useIframe) {
-					$c.find('iframe').css({width:$c.width()+cmenu.shadowOffsetX+cmenu.shadowWidthAdjust,height:$c.height()+cmenu.shadowOffsetY+cmenu.shadowHeightAdjust});
-				}
-				$c.css( {top:pos.y+"px", left:pos.x+"px", position:"absolute",zIndex:9999} )[cmenu.showTransition](cmenu.showSpeed,((cmenu.showCallback)?function(){cmenu.showCallback.call(cmenu);}:null));
-				cmenu.shown=true;
-				$(document).one('click',null,function(){cmenu.hide()}); // Handle a single click to the document to hide the menu
+
 			}
 		},
 		
