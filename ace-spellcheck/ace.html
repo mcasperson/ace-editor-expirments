@@ -53,28 +53,31 @@ function replaceWord(original, line, start, end, replacement) {
 				var retValue = [];
 				var word = editor.getSession().getValue().split("\n")[this.wordData.line].substring(this.wordData.start, this.wordData.end);
 				var found = false;
-				dictionary.suggest(word, 5, function(suggestions) {
-
-					for (var i = 0, _len = suggestions.length; i < _len; i++) {
-						var option = {};
-						var suggestion = suggestions[i];
-						option[suggestion]=function(suggestion, wordData){
-							return function(menuItem,menu){
-								editor.getSession().setValue(
-									replaceWord(
-										editor.getSession().getValue(),
-										wordData.line,
-										wordData.start,
-										wordData.end,
-										suggestion))
-							};
-						}(suggestion, this.wordData);
+				dictionary.suggest(word, 5, function(wordData) {
+					return function(suggestions) {
 	
-						retValue.push(option);
-					}
-					
-					callback(retValue);
-				});
+						for (var i = 0, _len = suggestions.length; i < _len; i++) {
+							var option = {};
+							var suggestion = suggestions[i];
+							option[suggestion]=function(suggestion, wordData){
+								return function(menuItem,menu){
+									editor.getSession().setValue(
+										replaceWord(
+											editor.getSession().getValue(),
+											wordData.line,
+											wordData.start,
+											wordData.end,
+											suggestion))
+								};
+							}(suggestion, wordData);
+		
+							retValue.push(option);
+						}
+						
+						callback(retValue);
+						
+					};
+				}(this.wordData));
 			}, {theme:'human', beforeShow: function() {  
 			    
 			    var retValue = false;
