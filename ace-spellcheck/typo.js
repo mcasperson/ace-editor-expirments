@@ -599,7 +599,10 @@ Typo.prototype = {
 	suggest : function (word, limit, callback) {
 		if (!limit) limit = 5;
 		
-		if (this.check(word)) return [];
+		if (this.check(word)) {
+			callback([]);
+			return;
+		}
 		
 		// Check the replacement table.
 		for (var i = 0, _len = this.replacementTable.length; i < _len; i++) {
@@ -609,7 +612,8 @@ Typo.prototype = {
 				var correctedWord = word.replace(replacementEntry[0], replacementEntry[1]);
 				
 				if (this.check(correctedWord)) {
-					return [ correctedWord ];
+					callback( [ correctedWord ] );
+					return;
 				}
 			}
 		}
