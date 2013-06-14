@@ -659,7 +659,7 @@ Typo.prototype = {
 			}
 
 			for (var i = 0; i < numWorkers; ++i) {
-				var worker = new Worker("javascript/typojs/wordprocessor.js");
+				var worker = new Worker("typojs/wordprocessor.js");
 				worker.addEventListener('message', function(index) {
 					return function(e) {
 						rv = rv.concat(e.data);
