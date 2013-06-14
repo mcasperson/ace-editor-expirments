@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c486bf1c-549f-4adf-bacf-e4f795bf4051" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ace-demo.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="c486bf1c-549f-4adf-bacf-e4f795bf4051" time="1371179584217" ignored="false" />
+    <file path="/Dummy.txt" changelist="c486bf1c-549f-4adf-bacf-e4f795bf4051" time="1371179705644" ignored="false" />
     <file path="/index.html" changelist="c486bf1c-549f-4adf-bacf-e4f795bf4051" time="1371179697665" ignored="false" />
     <file path="/acespellcheck,js.js" changelist="c486bf1c-549f-4adf-bacf-e4f795bf4051" time="1371175899763" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -399,7 +398,11 @@
       <created>1371179585428</created>
       <updated>1371179585428</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Working on spell checking demo">
+      <created>1371179706874</created>
+      <updated>1371179706874</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
