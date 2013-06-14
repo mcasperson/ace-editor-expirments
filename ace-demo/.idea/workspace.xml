@@ -7,8 +7,8 @@
     </list>
     <ignored path="ace-demo.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="c486bf1c-549f-4adf-bacf-e4f795bf4051" time="1371178012371" ignored="false" />
-    <file path="/index.html" changelist="c486bf1c-549f-4adf-bacf-e4f795bf4051" time="1371179578704" ignored="false" />
+    <file path="/Dummy.txt" changelist="c486bf1c-549f-4adf-bacf-e4f795bf4051" time="1371179584217" ignored="false" />
+    <file path="/index.html" changelist="c486bf1c-549f-4adf-bacf-e4f795bf4051" time="1371179697665" ignored="false" />
     <file path="/acespellcheck,js.js" changelist="c486bf1c-549f-4adf-bacf-e4f795bf4051" time="1371175899763" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -73,7 +73,7 @@
       <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="92" column="104" selection-start="4460" selection-end="4460" vertical-scroll-proportion="0.5675676">
+            <state line="95" column="26" selection-start="4632" selection-end="4632" vertical-scroll-proportion="0.6486486">
               <folding />
             </state>
           </provider>
@@ -395,7 +395,11 @@
       <created>1371178013379</created>
       <updated>1371178013380</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Working on spell checking demo">
+      <created>1371179585428</created>
+      <updated>1371179585428</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -550,7 +554,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="92" column="104" selection-start="4460" selection-end="4460" vertical-scroll-proportion="0.5675676">
+        <state line="95" column="26" selection-start="4632" selection-end="4632" vertical-scroll-proportion="0.6486486">
           <folding />
         </state>
       </provider>
