@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c486bf1c-549f-4adf-bacf-e4f795bf4051" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/typojs/typo.js" afterPath="$PROJECT_DIR$/typojs/typo.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ace-demo.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="c486bf1c-549f-4adf-bacf-e4f795bf4051" time="1371176768095" ignored="false" />
-    <file path="/index.html" changelist="c486bf1c-549f-4adf-bacf-e4f795bf4051" time="1371176581345" ignored="false" />
+    <file path="/Dummy.txt" changelist="c486bf1c-549f-4adf-bacf-e4f795bf4051" time="1371176841197" ignored="false" />
+    <file path="/index.html" changelist="c486bf1c-549f-4adf-bacf-e4f795bf4051" time="1371177317424" ignored="false" />
     <file path="/acespellcheck,js.js" changelist="c486bf1c-549f-4adf-bacf-e4f795bf4051" time="1371175899763" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -70,10 +70,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="44" selection-start="874" selection-end="874" vertical-scroll-proportion="-14.375">
+            <state line="21" column="100" selection-start="970" selection-end="970" vertical-scroll-proportion="0.16216215">
               <folding />
             </state>
           </provider>
@@ -88,10 +88,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="typo.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="typo.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/typojs/typo.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="661" column="41" selection-start="17512" selection-end="17512" vertical-scroll-proportion="0.8031088">
+            <state line="661" column="41" selection-start="17512" selection-end="17512" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -126,9 +126,9 @@
       <list>
         <option value="$PROJECT_DIR$/acespellcheck/spelling.css" />
         <option value="$PROJECT_DIR$/acespellcheck/acespellcheck,js.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/acespellcheck/acespellcheck.js" />
         <option value="$PROJECT_DIR$/typojs/typo.js" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -363,7 +363,11 @@
       <created>1371176770501</created>
       <updated>1371176770501</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Working on spell checking demo">
+      <created>1371176842404</created>
+      <updated>1371176842404</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -486,13 +490,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="44" selection-start="874" selection-end="874" vertical-scroll-proportion="-14.375">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/acespellcheck/acespellcheck.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="294" column="28" selection-start="9331" selection-end="9331" vertical-scroll-proportion="-5.42">
@@ -502,7 +499,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/typojs/typo.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="661" column="41" selection-start="17512" selection-end="17512" vertical-scroll-proportion="0.8031088">
+        <state line="661" column="41" selection-start="17512" selection-end="17512" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="100" selection-start="970" selection-end="970" vertical-scroll-proportion="0.16216215">
           <folding />
         </state>
       </provider>

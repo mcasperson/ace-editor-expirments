@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+<html lang="en">
 <html>
 <head>
     <title>Ace Spellchecking and Snippets</title>
-    <style type="text/css" media="screen">
+    <style type="text/css">
         #editor {
             position: absolute;
             top: 0;
@@ -12,13 +13,23 @@
         }
     </style>
     <link rel="stylesheet" type="text/css" href="contextmenu/jquery.contextmenu.css"/>
-    <link rel="stylesheet" type="text/css" href="acespellcheck/spelling.css.css"/>
+    <link rel="stylesheet" type="text/css" href="acespellcheck/spelling.css"/>
     <script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
-    <script src="ace/ace.js"></script>
-    <script src="acesnippets/snippets.js"></script>
-    <script src="acespellcheck/acespellcheck.js"></script>
-    <script src="typojs/typo.js"></script>
-    <script src="contextmenu/jquery.contextmenu.js"></script>
+    <script src="ace/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="acesnippets/snippets.js" type="text/javascript" charset="utf-8"></script>
+    <script src="acespellcheck/acespellcheck.js" type="text/javascript" charset="utf-8"></script>
+    <script src="typojs/typo.js" type="text/javascript" charset="utf-8"></script>
+    <script src="contextmenu/jquery.contextmenu.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+<body>
+    <div id="editor">&lt;section&gt;
+        &lt;title&gt;This is a test topic&lt;/title&gt;
+        &lt;para&gt;
+        I am a paragraph that exists in both revisions.
+        &lt;/para&gt;
+&lt;/section&gt;</div>
+
     <script>
         $(document).ready(function() {
             var editor = ace.edit("editor");
@@ -37,44 +48,42 @@
             var dic, negPhraseDic, negWordDic;
 
             jQuery.get(dicPath, function(data) {
-                dicData = data;
-            }).done(function() {
-                        jQuery.get(affPath, function(data) {
-                            affData = data;
-                        }).done(function() {
-                                    dic = new Typo(lang, affData, dicData);
+             dicData = data;
+             }).done(function() {
+             jQuery.get(affPath, function(data) {
+             affData = data;
+             }).done(function() {
+             dic = new Typo(lang, affData, dicData);
 
-                                    jQuery.get(negPhraseDicPath, function(data) {
-                                        negPhraseDicData = data;
-                                    }).done(function() {
-                                                jQuery.get(negPhraseAffPath, function(data) {
-                                                    negphraseAffData = data;
-                                                }).done(function() {
-                                                            negPhraseDic = new Typo(lang, negPhraseDicData, negphraseAffData);
+             jQuery.get(negPhraseDicPath, function(data) {
+             negPhraseDicData = data;
+             }).done(function() {
+             jQuery.get(negPhraseAffPath, function(data) {
+             negphraseAffData = data;
+             }).done(function() {
+             negPhraseDic = new Typo(lang, negPhraseDicData, negphraseAffData);
 
-                                                            jQuery.get(negWordDicPath, function(data) {
-                                                                negWordDicData = data;
-                                                            }).done(function() {
-                                                                        jQuery.get(negWordAffPath, function(data) {
-                                                                            negWordAffData = data;
-                                                                        }).done(function() {
-                                                                                    negWordDic = new Typo(lang, affData, dicData);
+             jQuery.get(negWordDicPath, function(data) {
+             negWordDicData = data;
+             }).done(function() {
+             jQuery.get(negWordAffPath, function(data) {
+             negWordAffData = data;
+             }).done(function() {
+             negWordDic = new Typo(lang, affData, dicData);
 
-                                                                                    enableSpellChecking(editor, dic, negWordDic, negPhraseDic);
-                                                                                });
-                                                                    });
-                                                        });
-                                            });
-                        });
-                    });
+             enableSpellChecking(editor, dic, negWordDic, negPhraseDic);
+             });
+             });
+             });
+             });
+             });
+             });
 
 
 
 
         });
     </script>
-</head>
-<body>
-    <div id="editor">a wholle bunche off misspealled woords</div>
+
 </body>
 </html>
