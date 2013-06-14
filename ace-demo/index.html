@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ace Spellchecking and Snippets</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="contextmenu/jquery.contextmenu.css"/>
+    <link rel="stylesheet" type="text/css" href="acespellcheck/spelling.css.css"/>
+    <script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
+    <script src="ace/ace.js"></script>
+    <script src="acesnippets/snippets.js"></script>
+    <script src="acespellcheck/acespellcheck.js"></script>
+    <script src="typojs/typo.js"></script>
+    <script src="contextmenu/jquery.contextmenu.js"></script>
+    <script>
+        $(document).ready(function() {
+            var editor = ace.edit("editor");
+            editor.setTheme("ace/theme/monokai");
+            editor.getSession().setMode("ace/mode/xml");
+
+            var dicPath = 'typojs/en_US.dic';
+            var affPath = 'typojs/en_US.aff';
+            var negPhraseDicPath = 'typojs/en_US-negphrase.dic';
+            var negPhraseAffPath = 'typojs/en_US-neg.aff';
+            var negWordDicPath = 'typojs/en_US-neg.dic';
+            var negWordAffPath = 'typojs/en_US-neg.aff';
+            var lang = "en_US";
+
+            var dicData, affData, negPhraseDicData, negphraseAffData, negWordDicData, negWordAffData;
+            var dic, negPhraseDic, negWordDic;
+
+            jQuery.get(dicPath, function(data) {
+                dicData = data;
+            }).done(function() {
+                        jQuery.get(affPath, function(data) {
+                            affData = data;
+                        }).done(function() {
+                                    dic = new Typo(lang, affData, dicData);
+
+                                    jQuery.get(negPhraseDicPath, function(data) {
+                                        negPhraseDicData = data;
+                                    }).done(function() {
+                                                jQuery.get(negPhraseAffPath, function(data) {
+                                                    negphraseAffData = data;
+                                                }).done(function() {
+                                                            negPhraseDic = new Typo(lang, negPhraseDicData, negphraseAffData);
+
+                                                            jQuery.get(negWordDicPath, function(data) {
+                                                                negWordDicData = data;
+                                                            }).done(function() {
+                                                                        jQuery.get(negWordAffPath, function(data) {
+                                                                            negWordAffData = data;
+                                                                        }).done(function() {
+                                                                                    negWordDic = new Typo(lang, affData, dicData);
+
+                                                                                    enableSpellChecking(editor, dic, negWordDic, negPhraseDic);
+                                                                                });
+                                                                    });
+                                                        });
+                                            });
+                        });
+                    });
+
+
+
+
+        });
+    </script>
+</head>
+<body>
+    <div id="editor">a wholle bunche off misspealled woords</div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+.ace_marker-layer div[class^='badphrase'] {
+    position: absolute;
+    z-index: -2;
+    background-color: rgba(133, 0, 255, 0.2);
+}
+
+.ace_marker-layer div[class^='misspelled'] {
+    position: absolute;
+    z-index: -2;
+    background-color:
+        rgba(255, 0, 0, 0.2);
+}
+
+div[class^='misspelled'] {
+    background-color: rgba(255, 0, 0, 0.2);
+}
+
+.ace_marker-layer div[class^='badword'] {
+    position: absolute;
+    z-index: -2;
+    background-color: rgba(245, 255, 0, 0.2);
+}
+
+div[class^='badword'] {
+    background-color: rgba(245, 255, 0, 0.2);
+}
