@@ -7,7 +7,7 @@
     </list>
     <ignored path="ace-demo.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="c486bf1c-549f-4adf-bacf-e4f795bf4051" time="1371176841197" ignored="false" />
+    <file path="/Dummy.txt" changelist="c486bf1c-549f-4adf-bacf-e4f795bf4051" time="1371177634795" ignored="false" />
     <file path="/index.html" changelist="c486bf1c-549f-4adf-bacf-e4f795bf4051" time="1371177317424" ignored="false" />
     <file path="/acespellcheck,js.js" changelist="c486bf1c-549f-4adf-bacf-e4f795bf4051" time="1371175899763" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -73,8 +73,28 @@
       <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="100" selection-start="970" selection-end="970" vertical-scroll-proportion="0.16216215">
+            <state line="64" column="108" selection-start="2983" selection-end="2983" vertical-scroll-proportion="0.6756757">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="en_US-negphrase.dic" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/typojs/en_US-negphrase.dic">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="0" selection-start="38" selection-end="55" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="snippets.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/acesnippets/snippets.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="27" selection-start="392" selection-end="392" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -82,25 +102,7 @@
       <file leaf-file-name="acespellcheck.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/acespellcheck/acespellcheck.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="294" column="28" selection-start="9331" selection-end="9331" vertical-scroll-proportion="-5.42">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="typo.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/typojs/typo.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="661" column="41" selection-start="17512" selection-end="17512" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="spelling.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/acespellcheck/spelling.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="1" selection-start="552" selection-end="552" vertical-scroll-proportion="0.0">
+            <state line="294" column="28" selection-start="9331" selection-end="9331" vertical-scroll-proportion="-21.6">
               <folding />
             </state>
           </provider>
@@ -210,6 +212,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="acespellcheck" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ace-demo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ace-demo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="acesnippets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -367,7 +383,11 @@
       <created>1371176842404</created>
       <updated>1371176842404</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Working on spell checking demo">
+      <created>1371177411968</created>
+      <updated>1371177411968</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -490,13 +510,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/acespellcheck/acespellcheck.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="294" column="28" selection-start="9331" selection-end="9331" vertical-scroll-proportion="-5.42">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/typojs/typo.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="661" column="41" selection-start="17512" selection-end="17512" vertical-scroll-proportion="0.0">
@@ -504,9 +517,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/acespellcheck/acespellcheck.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="294" column="28" selection-start="9331" selection-end="9331" vertical-scroll-proportion="-21.6">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/acesnippets/snippets.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="27" selection-start="392" selection-end="392" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/typojs/en_US-negphrase.dic">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="0" selection-start="38" selection-end="55" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="100" selection-start="970" selection-end="970" vertical-scroll-proportion="0.16216215">
+        <state line="64" column="108" selection-start="2983" selection-end="2983" vertical-scroll-proportion="0.6756757">
           <folding />
         </state>
       </provider>

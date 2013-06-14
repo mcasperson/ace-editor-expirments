@@ -20,21 +20,22 @@
     <script src="acespellcheck/acespellcheck.js" type="text/javascript" charset="utf-8"></script>
     <script src="typojs/typo.js" type="text/javascript" charset="utf-8"></script>
     <script src="contextmenu/jquery.contextmenu.js" type="text/javascript" charset="utf-8"></script>
-
-</head>
-<body>
-    <div id="editor">&lt;section&gt;
-        &lt;title&gt;This is a test topic&lt;/title&gt;
-        &lt;para&gt;
-        I am a paragraph that exists in both revisions.
-        &lt;/para&gt;
-&lt;/section&gt;</div>
-
     <script>
         $(document).ready(function() {
             var editor = ace.edit("editor");
             editor.setTheme("ace/theme/monokai");
             editor.getSession().setMode("ace/mode/xml");
+
+            var snippetManager = require("ace/snippets").snippetManager;
+
+            if (snippetManager != null) {
+                editor.commands.bindKey("Tab", function(editor) {
+                    var success = snippetManager.expandWithTab(editor);
+                    if (!success) {
+                        editor.execCommand("indent");
+                    }
+                });
+            }
 
             var dicPath = 'typojs/en_US.dic';
             var affPath = 'typojs/en_US.aff';
@@ -48,42 +49,52 @@
             var dic, negPhraseDic, negWordDic;
 
             jQuery.get(dicPath, function(data) {
-             dicData = data;
-             }).done(function() {
-             jQuery.get(affPath, function(data) {
-             affData = data;
-             }).done(function() {
-             dic = new Typo(lang, affData, dicData);
+                dicData = data;
+            }).done(function() {
+                        jQuery.get(affPath, function(data) {
+                            affData = data;
+                        }).done(function() {
+                                    dic = new Typo(lang, affData, dicData);
 
-             jQuery.get(negPhraseDicPath, function(data) {
-             negPhraseDicData = data;
-             }).done(function() {
-             jQuery.get(negPhraseAffPath, function(data) {
-             negphraseAffData = data;
-             }).done(function() {
-             negPhraseDic = new Typo(lang, negPhraseDicData, negphraseAffData);
+                                    jQuery.get(negPhraseDicPath, function(data) {
+                                        negPhraseDicData = data;
+                                    }).done(function() {
+                                                jQuery.get(negPhraseAffPath, function(data) {
+                                                    negphraseAffData = data;
+                                                }).done(function() {
+                                                            negPhraseDic = new Typo(lang, negphraseAffData, negPhraseDicData);
 
-             jQuery.get(negWordDicPath, function(data) {
-             negWordDicData = data;
-             }).done(function() {
-             jQuery.get(negWordAffPath, function(data) {
-             negWordAffData = data;
-             }).done(function() {
-             negWordDic = new Typo(lang, affData, dicData);
+                                                            jQuery.get(negWordDicPath, function(data) {
+                                                                negWordDicData = data;
+                                                            }).done(function() {
+                                                                        jQuery.get(negWordAffPath, function(data) {
+                                                                            negWordAffData = data;
+                                                                        }).done(function() {
+                                                                                    negWordDic = new Typo(lang, negWordAffData, negWordDicData);
 
-             enableSpellChecking(editor, dic, negWordDic, negPhraseDic);
-             });
-             });
-             });
-             });
-             });
-             });
+                                                                                    enableSpellChecking(editor, dic, negWordDic, negPhraseDic);
+                                                                                });
+                                                                    });
+                                                        });
+                                            });
+                                });
+                    });
 
 
 
 
         });
     </script>
+</head>
+<body>
+    <div id="editor">&lt;section&gt;
+        &lt;title&gt;This is a test topic&lt;/title&gt;
+        &lt;para&gt;
+        I am a paragraph that exists in both revisions.
+        &lt;/para&gt;
+&lt;/section&gt;</div>
+
+
 
 </body>
 </html>
