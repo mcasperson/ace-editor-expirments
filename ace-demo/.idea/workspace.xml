@@ -7,7 +7,7 @@
     </list>
     <ignored path="ace-demo.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="c486bf1c-549f-4adf-bacf-e4f795bf4051" time="1371177634795" ignored="false" />
+    <file path="/Dummy.txt" changelist="c486bf1c-549f-4adf-bacf-e4f795bf4051" time="1371177900151" ignored="false" />
     <file path="/index.html" changelist="c486bf1c-549f-4adf-bacf-e4f795bf4051" time="1371177317424" ignored="false" />
     <file path="/acespellcheck,js.js" changelist="c486bf1c-549f-4adf-bacf-e4f795bf4051" time="1371175899763" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -73,7 +73,7 @@
       <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="64" column="108" selection-start="2983" selection-end="2983" vertical-scroll-proportion="0.6756757">
+            <state line="97" column="0" selection-start="4737" selection-end="4737" vertical-scroll-proportion="0.9189189">
               <folding />
             </state>
           </provider>
@@ -387,7 +387,11 @@
       <created>1371177411968</created>
       <updated>1371177411968</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Working on spell checking demo">
+      <created>1371177901448</created>
+      <updated>1371177901448</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -542,7 +546,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="108" selection-start="2983" selection-end="2983" vertical-scroll-proportion="0.6756757">
+        <state line="97" column="0" selection-start="4737" selection-end="4737" vertical-scroll-proportion="0.9189189">
           <folding />
         </state>
       </provider>
